@@ -1,8 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
-
 const containerGalleryRef = document.querySelector(".gallery");
 // створюємо змінну зі зверненням до класу в html і закріплення за нею цієї адреси
 const galleryMarkup = createGalleryMarkup(galleryItems);
@@ -35,3 +33,22 @@ function createGalleryMarkup(galleryItems) {
 // один рядок, бо ми вказуємо, що розділяти треба ('') порожнім місцем.
 // Відповідно далі insertAdjacentHTML все це інтерпретує та записує в html, як розмітку
 // всередині нашого контейнера .gallery
+
+// відмінно від попередньо використаної бібліотеки в 1 завданні, ця бібліотека вже
+// має у своєму функціоналі скасування налаштувань браузера за замовчуванням,
+// тобто нам не потрібно застосовувати .preventDefault().
+// Також у цій бібліотеці під капотом уже реалізовано addEventListener саме на зчитування
+// подій "keydown" та розпізнавання системних клавіш і призначено закриття модалки за
+// натисканням Escape. Додатково бібліотека має реалізовані кнопочки перемикання між
+// зображеннями в модалці, також це перемикання реалізоване через addEventListener
+// на зчитування подій "keydown" за клавішами праворуч та ліворуч
+
+var lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 250,
+});
+// у документації бібліотеки прописано безліч властивостей і які значення вони приймають.
+// captionsData - отримати заголовок із заданого атрибута, ми вказуємо alt, де описова інфа.
+// captionPosition - положення підпису, ми вказуємо внизу bottom (доступні варіанти є в документації)
+// captionDelay - додає затримку перед показом підпису (у мс), вказуємо 250, як у ТЗ
