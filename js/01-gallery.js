@@ -37,12 +37,41 @@ function openModal(event) {
 
   instance.show();
 
-  containerGalleryRef.addEventListener("keydown", (event) => {
+  containerGalleryRef.addEventListener("keydown", closeModal);
+
+  function closeModal(event) {
     if (event.code === "Escape") {
       instance.close();
     }
-  });
+  }
+
+  containerGalleryRef.addEventListener("keydown", removeEvent);
+  function removeEvent(event) {
+    if (event.code === "Escape") {
+      containerGalleryRef.removeEventListener("keydown", removeEvent);
+    }
+  }
 }
+
+// ВАРІАНТ 2
+
+// containerGalleryRef.addEventListener("keydown", closeModal);
+
+// function closeModal(event) {
+//   if (event.code === "Escape") {
+//     instance.close();
+//   }
+// }
+
+// containerGalleryRef.addEventListener("keydown", removeEvent);
+// function removeEvent(event) {
+//   if (event.code === "Escape") {
+//     containerGalleryRef.removeEventListener("keydown", removeEvent);
+////// додаємо ще одного слухача подій і прописуємо логіку видалення слухача з клавіши Escape
+//   }
+// }
+
+// ВАРІАНТ 1
 
 // import { galleryItems } from "./gallery-items.js";
 // // Change code below this line
