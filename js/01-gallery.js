@@ -42,16 +42,23 @@ function openModal(event) {
   function closeModal(event) {
     if (event.code === "Escape") {
       instance.close();
-    }
-  }
-
-  containerGalleryRef.addEventListener("keydown", removeEvent);
-  function removeEvent(event) {
-    if (event.code === "Escape") {
-      containerGalleryRef.removeEventListener("keydown", removeEvent);
+      containerGalleryRef.removeEventListener("keydown", closeModal);
     }
   }
 }
+
+// ВАРІАНТ 3
+
+//   containerGalleryRef.addEventListener("keydown", closeModal);
+
+//   function closeModal(event) {
+//     if (event.code === "Escape") {
+//       instance.close();
+//       containerGalleryRef.removeEventListener("keydown", closeModal);
+//     }
+//   }
+// }
+//// додаємо видалення слухача подій прямо до функції закривання модального вікна після його згортання
 
 // ВАРІАНТ 2
 
